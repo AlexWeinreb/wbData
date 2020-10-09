@@ -4,7 +4,7 @@
 #' @param symbol gene symbols.
 #' @param geneIDs Translation table generated with `load_gene_ids()`.
 #'
-#' @return Wormbase ID.
+#' @return The corresponding Wormbase IDs.
 #' @export
 #'
 #' @examples
