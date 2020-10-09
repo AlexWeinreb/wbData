@@ -1,11 +1,12 @@
 Package: wbData
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Download And Use WormBase Data
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Alexis Weinreb
+Maintainer: Alexis Weinreb <alexis.weinreb@yale.edu>
+Description: Helper functions to download and use data from Wormbase.
+    In this initial version, download data from the FTP, we also have
+    functions to convert gene names.
+License: GPL v3
 Encoding: UTF-8
 LazyData: true
