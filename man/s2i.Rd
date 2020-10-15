@@ -12,7 +12,7 @@ s2i(symbol, geneIDs)
 \item{geneIDs}{Translation table generated with `load_gene_ids()`.}
 }
 \value{
-Wormbase ID.
+The corresponding Wormbase IDs.
 }
 \description{
 Convert symbol to Wormbase ID

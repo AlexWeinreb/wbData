@@ -11,7 +11,7 @@
 #' gids <- load_gene_ids("WS277")
 #' s2i("unc-10", gids)
 s2i <- function(symbol, geneIDs){
-  geneIDs$gene_id[match(symbol, geneIDs$symbol)]
+  geneIDs$gene_id[match(symbol, geneIDs$name)]
   }
 
 
