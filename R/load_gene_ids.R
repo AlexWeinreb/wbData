@@ -77,7 +77,7 @@ wb_load_gene_ids <- function(WS, dir_cache = NULL){
   }
 
 
-  # read data, not format changed between versions
+  # read data, note format changed between versions
   if(WS >= 264){
     geneIDs <- readr::read_csv(cached_file,
                                col_names = c("X", "gene_id","symbol",
