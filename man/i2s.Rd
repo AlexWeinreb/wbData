@@ -19,6 +19,6 @@ name is returned instead.
 Convert Wormbase ID to symbol
 }
 \examples{
-gids <- load_gene_ids("WS277")
+gids <- wb_load_gene_ids("WS277")
 s2i("unc-10", gids)
 }

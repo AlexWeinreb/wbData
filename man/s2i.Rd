@@ -18,6 +18,6 @@ The corresponding Wormbase IDs.
 Convert symbol to Wormbase ID
 }
 \examples{
-gids <- load_gene_ids("WS277")
+gids <- wb_load_gene_ids("WS277")
 s2i("unc-10", gids)
 }

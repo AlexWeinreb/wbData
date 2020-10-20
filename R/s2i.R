@@ -8,7 +8,7 @@
 #' @export
 #'
 #' @examples
-#' gids <- load_gene_ids("WS277")
+#' gids <- wb_load_gene_ids("WS277")
 #' s2i("unc-10", gids)
 s2i <- function(symbol, geneIDs){
   geneIDs$gene_id[match(symbol, geneIDs$name)]
@@ -25,7 +25,7 @@ s2i <- function(symbol, geneIDs){
 #' @export
 #'
 #' @examples
-#' gids <- load_gene_ids("WS277")
+#' gids <- wb_load_gene_ids("WS277")
 #' s2i("unc-10", gids)
 i2s <- function(gene_id, geneIDs){
   geneIDs$name[match(gene_id, geneIDs$gene_id)]
