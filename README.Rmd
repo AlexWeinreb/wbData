@@ -35,7 +35,7 @@ devtools::install_github("AlexWeinreb/wbData")
 
 To load the geneIDs table for Wormbase release WS277 and convert between gene ID and gene symbol:
 
-```{r convert_id}
+```{r}
 library(wbData)
 
 gids <- wb_load_gene_ids("WS273")
@@ -46,28 +46,36 @@ i2s(c("WBGene00006752", "WBGene00004412"), gids)
 
 ## Example reading gene coordinates
 
-```{r read_gene_coords}
-gene_coords <- wb_load_gene_coords(273)
+```{r}
+gene_coords <- wbData::wb_load_gene_coords(273)
 gene_coords
 ```
 
 This can be used in conjunction with other packages, for example to look up a gene model in IGV or JBrowse:
 
-```{r use_gene_coords}
+```{r, eval=FALSE}
 library(tidyverse)
 
 gene_coords %>%
-  dplyr::filter(gene_id == s2i("unc-10", gids)) %>%
-  pull(position) %>%
+  filter(gene_id == s2i("unc-10", gids)) %>%
+  pull(position)
   clipr::write_clip()
 ```
 
 
 ## Data management
 
-The downloaded file is stored on the local computer to avoid re-downloading every time. That way, `wbData` can also be used to obtain Wormbase files to use with other software. The cache can be emptied as follows:
+The downloaded file is stored on the local computer to avoid re-downloading every time. That way, `wbData` can also be used to obtain Wormbase files to use with other software.
 
-```{r clean}
+The cache directory can be specified in three ways:
+
+* Explicitly by specifying a path as argument to the package functions.
+* Through `option("wb_dir_cache")`. In that case leave the argument as `NULL`.
+* If the `dir_cache` argument is `NULL` and the option is not specified, a user-specific cache directory is chosen based on the operating system by [rappdirs](https://github.com/r-lib/rappdirs/).
+
+The cache can be emptied with:
+
+```{r}
 wb_clean_cache(273)
 ```
 
