@@ -14,10 +14,8 @@ knitr::opts_chunk$set(
 
 # wbData
 
-<!-- badges: start -->
-<!-- badges: end -->
 
-Personal package to easily download and use Wormbase data. At this point, it only downloads the "geneIDs" table and provides function to convert between Wormbase IDs and gene symbols. I may add functions to download and access GTF files later.
+Easily download and use Wormbase data. Can be used to download or read the "geneIDs" table or the GTF files from Wormbase, and provides functions to convert between Wormbase IDs and gene symbols.
 
 The three advantages are:
 
@@ -33,7 +31,7 @@ You can install the development version from [GitHub](https://github.com/) with:
 # install.packages("devtools")
 devtools::install_github("AlexWeinreb/wbData")
 ```
-## Example
+## Example of gene ID conversion
 
 To load the geneIDs table for Wormbase release WS277 and convert between gene ID and gene symbol:
 
@@ -45,8 +43,31 @@ s2i("unc-10", gids)
 i2s(c("WBGene00006752", "WBGene00004412"), gids)
 ```
 
-The downloaded file is stored on the local computer to avoid re-downloading every time. The cache can be emptied as follows:
+
+## Example reading gene coordinates
+
+```{r read_gene_coords}
+gene_coords <- wb_load_gene_coords(273)
+gene_coords
+```
+
+This can be used in conjunction with other packages, for example to look up a gene model in IGV or JBrowse:
+
+```{r use_gene_coords}
+library(tidyverse)
+
+gene_coords %>%
+  dplyr::filter(gene_id == s2i("unc-10", gids)) %>%
+  pull(position) %>%
+  clipr::write_clip()
+```
+
+
+## Data management
+
+The downloaded file is stored on the local computer to avoid re-downloading every time. That way, `wbData` can also be used to obtain Wormbase files to use with other software. The cache can be emptied as follows:
 
 ```{r clean}
 wb_clean_cache(273)
 ```
+

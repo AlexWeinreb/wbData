@@ -10,7 +10,7 @@ get_WS(WS)
 \item{WS}{Release number to validate.}
 }
 \value{
-A number labelling a valid Wormbase release.
+A number labeling a valid Wormbase release.
 }
 \description{
 This internal function enables other functions to receive the Wormbase release

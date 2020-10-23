@@ -8,7 +8,6 @@
 #' @return The location of the cache directory, either explicitely user-provided,
 #' specified as a global option, or (by default) in the OS cache directory.
 #'
-#' @examples
 get_dir_cache <- function(dir_cache){
   if(is.null(dir_cache)){
     if(!is.null(getOption("wb_dir_cache"))){
@@ -34,9 +33,8 @@ get_dir_cache <- function(dir_cache){
 #'
 #' @param WS Release number to validate.
 #'
-#' @return A number labelling a valid Wormbase release.
+#' @return A number labeling a valid Wormbase release.
 #'
-#' @examples
 get_WS <- function(WS){
 
   if(length(WS) > 1){

@@ -3,4 +3,6 @@
 export(i2s)
 export(s2i)
 export(wb_clean_cache)
+export(wb_load_exon_coords)
+export(wb_load_gene_coords)
 export(wb_load_gene_ids)
