@@ -4,9 +4,8 @@ Title: Download And Use WormBase Data
 Version: 0.1.0
 Author: Alexis Weinreb
 Maintainer: Alexis Weinreb <alexis.weinreb@yale.edu>
-Description: Helper functions to download and use data from Wormbase.
-    In this initial version, download data from the FTP, we also have
-    functions to convert gene names.
+Description: Helper functions to download and use data from Wormbase or other Worm-related data sources.
+    Download data (typically from the Wormbase FTP server), save it in a cache directory, manage the content of the cache.
 URL: https://github.com/AlexWeinreb/wbData
 BugReports: https://github.com/AlexWeinreb/wbData/issues
 License: GPL-3
@@ -15,5 +14,6 @@ LazyData: true
 RoxygenNote: 7.1.1
 Imports: 
     readr,
+    dplyr,
     rappdirs,
     utils

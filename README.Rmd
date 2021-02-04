@@ -62,6 +62,32 @@ gene_coords %>%
   clipr::write_clip()
 ```
 
+## Reading the CGC strain list
+
+You can load the list of strains available at the CGC. The downloaded list is saved in cache, and by default is only downloaded again if the cached file is more than 2 days old. Use the `refresh` argument to force refreshing.
+
+```{r}
+strain_list <- wb_load_cgc_list()
+nrow(strain_list)
+```
+
+For example, looking at a specific strain:
+
+```{r}
+strain_list$Genotype[strain_list$Strain == "NC902"]
+```
+
+Or looking for strains that have particular characteristics. For example, using a [regular expression](https://cran.r-project.org/web/packages/stringr/vignettes/regular-expressions.html) to look for strains that have *hbl-1* potentially associated with a red fluorescent protein:
+
+```{r}
+
+fluo_keywords <- c("cherry", "tomato", "scarlet", "rfp", " red ")
+my_pattern <- paste("hbl-1", ".*::.*", fluo_keywords, sep="", collapse = "|")
+with_fluo <- which(grepl(my_pattern, tolower(strain_list$Genotype)) | grepl(my_pattern, tolower(strain_list$Description)))
+strain_list[with_fluo,]
+```
+
+
 
 ## Data management
 

@@ -50,6 +50,17 @@ get_filename_gtf <- function(WS){
 }
 
 
+
+#' Get URL of CGC strain list
+#'
+#'
+#' @return a vector of length 2 giving the URL path and the filename.
+get_filename_cgc <- function(){
+  c(path="https://cgc.umn.edu/static/",
+    filename="cgc-strains.txt")
+}
+
+
 #' Find the filename and FTP path
 #'
 #' Dispatch to the corresponding file type function.
@@ -62,6 +73,7 @@ get_filename <- function(type, WS){
   switch(tolower(type),
          "geneid"=, "geneids" = get_filename_geneID(WS),
          "gtf" = get_filename_gtf(WS),
+         "cgc" = get_filename_cgc(),
          stop("Type of file not recognized.")
   )
 }
