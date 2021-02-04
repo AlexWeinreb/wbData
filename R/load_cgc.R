@@ -10,12 +10,11 @@
 #' strain_list <- wb_load_cgc_list()
 #' nrow(strain_list)
 #' strain_list$Genotype[strain_list$Strain == "NC902"]
-wb_load_cgc_list <- function(dir_cache = NULL, refresh = NULL){
+wb_load_cgc_list <- function(dir_cache = NULL, refresh = 2){
 
   # validate input
   dir_cache <- get_dir_cache(dir_cache)
 
-  if(is.null(refresh)) refresh <- 2 #days
   stopifnot(is.numeric(refresh))
 
   # check if file needs refresh
