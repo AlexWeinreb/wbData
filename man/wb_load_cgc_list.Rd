@@ -4,7 +4,7 @@
 \alias{wb_load_cgc_list}
 \title{Load the list of strains available at the CGC}
 \usage{
-wb_load_cgc_list(dir_cache = NULL, refresh = NULL)
+wb_load_cgc_list(dir_cache = NULL, refresh = 2)
 }
 \arguments{
 \item{dir_cache}{Directory where the downloaded files are cached.}

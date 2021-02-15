@@ -3,6 +3,7 @@
 export(i2s)
 export(s2i)
 export(wb_clean_cache)
+export(wb_get_gtf_path)
 export(wb_load_cgc_list)
 export(wb_load_exon_coords)
 export(wb_load_gene_coords)

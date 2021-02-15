@@ -195,3 +195,45 @@ wb_load_exon_coords <- function(WS, dir_cache = NULL){
 
   exon_coords[c(10,6,5,7,1:4,8:9,11)]
 }
+
+
+#' Get path to cached GTF file
+#'
+#' Returns the path to a GTF file in the cache. Useful to use with functions that require
+#' a connection to read from (e.g. to create a TxDb for Bioconductor packages). The file gets
+#' downloaded as necessary.
+#'
+#' @param WS Wormbase release version.
+#' @param dir_cache Directory where the downloaded files are cached.
+#'
+#' @return a character string pointing to a "c_elegans.PRJNA13758.WSxxx.canonical_geneset.gtf.gz" file.
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' library(GenomicFeatures)
+#' library(wbData)
+#'
+#' path_to_gtf <- wb_get_gtf_path(273)
+#' my_txdb <- makeTxDbFromGFF(path_to_gtf,dataSource = "Wormbase",organism = "Caenorhabditis elegans")
+#' gids <- wb_load_gene_ids(273)
+#' select(my_txdb, keys = s2i("nduo-3", gids), columns = "TXSTART", keytype = "GENEID")
+#' }
+wb_get_gtf_path <- function(WS, dir_cache = NULL){
+
+  # validate input
+  if(is.character(WS)) WS <- get_WS(WS)
+  dir_cache <- get_dir_cache(dir_cache)
+
+  file_path <- get_filename("gtf", WS)
+  cached_file <- file.path(dir_cache, file_path["filename"])
+  if(! file.exists(cached_file)){
+    ftp_path <- paste(file_path, collapse = "")
+    utils::download.file(ftp_path, cached_file)
+  }
+
+
+  # return path to file
+  cached_file
+}
+
