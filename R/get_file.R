@@ -50,6 +50,22 @@ get_filename_gtf <- function(WS){
 }
 
 
+#' Get FTP path and filename of the genome FASTA file
+#'
+#' This internal function gets the Wormbase FTP location and the filename
+#' of the genome FASTA file for a given Wormbase release.
+#'
+#' @param WS Wormbase release number.
+#'
+#' @return a vector of length 2 giving the FTP path and the filename.
+#'
+get_filename_genome <- function(WS){
+  path <- c(path=paste0("ftp://ftp.wormbase.org/pub/wormbase/releases/WS",
+                        WS,"/species/c_elegans/PRJNA13758/"),
+            filename=paste0("c_elegans.PRJNA13758.WS",WS,".genomic.fa.gz"))
+  path
+}
+
 
 #' Get URL of CGC strain list
 #'
@@ -73,6 +89,7 @@ get_filename <- function(type, WS){
   switch(tolower(type),
          "geneid"=, "geneids" = get_filename_geneID(WS),
          "gtf" = get_filename_gtf(WS),
+         "genome" = get_filename_genome(WS),
          "cgc" = get_filename_cgc(),
          stop("Type of file not recognized.")
   )
