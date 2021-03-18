@@ -20,8 +20,8 @@ get_filename_geneID <- function(WS){
     path <- c(path=paste0("ftp://ftp.wormbase.org/pub/wormbase/releases/WS",
                           WS,"/species/c_elegans/annotation/"),
               filename=paste0("geneIDs.WS",WS,".gz"))
-  } else if(WS <= 190){
-    stop("Annotations not available for WS190 and older.")
+  } else if(WS < 197){
+    stop("Annotations not available for WS196 and older.")
   } else stop("Unrecognized Wormbase release.")
 
   path
