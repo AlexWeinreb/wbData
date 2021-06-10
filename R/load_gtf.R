@@ -61,8 +61,10 @@ wb_load_gene_coords <- function(WS, dir_cache = NULL){
   } else if(WS >= 262 && WS <= 268){
     warning("For WS262-WS268 the miRNA gene IDs are non-standard. Further processing may be required.")
     gene_regex <- "^gene_id \"(WBGene\\d{8}|Transcript:\\w{3,7}\\.\\d{1,4})\"; gene_source \"WormBase\"; gene_biotype \"(\\w+)\";$"
-  } else{
+  } else if(WS <=279){
     gene_regex <- "^gene_id \"(WBGene\\d{8})\"; gene_source \"WormBase\"; gene_biotype \"(\\w+)\";$"
+  } else{
+    gene_regex <- "^gene_id \"(WBGene\\d{8})\"; gene_source \"WormBase\"; gene_biotype \"(\\w+)\"; gene_name \"[\\w\\d\\-.]*\";$"
   }
 
 
