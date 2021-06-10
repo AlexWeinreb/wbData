@@ -63,8 +63,10 @@ wb_load_gene_coords <- function(WS, dir_cache = NULL){
     gene_regex <- "^gene_id \"(WBGene\\d{8}|Transcript:\\w{3,7}\\.\\d{1,4})\"; gene_source \"WormBase\"; gene_biotype \"(\\w+)\";$"
   } else if(WS <=279){
     gene_regex <- "^gene_id \"(WBGene\\d{8})\"; gene_source \"WormBase\"; gene_biotype \"(\\w+)\";$"
+  } else if(WS == 280){
+    gene_regex <- "^gene_id \"(WBGene\\d{8})\"; gene_source \"WormBase\"; gene_biotype \"(\\w+)\"; gene_name \"([\\w\\d\\-.]*)\";$"
   } else{
-    gene_regex <- "^gene_id \"(WBGene\\d{8})\"; gene_source \"WormBase\"; gene_biotype \"(\\w+)\"; gene_name \"[\\w\\d\\-.]*\";$"
+    gene_regex <- "^gene_id \"(WBGene\\d{8})\"; gene_version \"[0-9]+\"; gene_source \"WormBase\"; gene_biotype \"(\\w+)\"; gene_name \"([\\w\\d\\-.]*)\";$"
   }
 
 
@@ -78,11 +80,18 @@ wb_load_gene_coords <- function(WS, dir_cache = NULL){
                                  format(gene_coords$start,big.mark = ","),
                                  "-",
                                  format(gene_coords$end, big.mark = ","))
-  gene_coords$attributes <- NULL
+  if(WS >= 280){
+    gene_coords$name <- vapply(regmatches(attrs,m), function(x) x[[4]],
+                               character(1))
+    if(gene_coords$name[gene_coords$gene_id == "WBGene00010290"] == ""){
+      gene_coords$name[gene_coords$gene_id == "WBGene00010290"] <- "F58H1.7"
+    }
+  }
 
 
 
-  gene_coords[c(5,1:4,7:6)]
+
+  gene_coords[c(6,9,1:4,8:7)]
 }
 
 
