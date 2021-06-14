@@ -86,12 +86,10 @@ wb_load_gene_coords <- function(WS, dir_cache = NULL){
     if(gene_coords$name[gene_coords$gene_id == "WBGene00010290"] == ""){
       gene_coords$name[gene_coords$gene_id == "WBGene00010290"] <- "F58H1.7"
     }
+    return(gene_coords[c(6,9,1:4,8:7)])
+  } else{
+    gene_coords[c(6,1:4,8:7)]
   }
-
-
-
-
-  gene_coords[c(6,9,1:4,8:7)]
 }
 
 
