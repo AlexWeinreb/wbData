@@ -50,6 +50,19 @@ get_filename_gtf <- function(WS){
 }
 
 
+#' Get filename for a TxDb file
+#'
+#' This internal function sets the name to use to store a TxDb file in cache.
+#'
+#' @param WS Wormbase release number.
+#'
+#' @return a vector of length 1 with the filename.
+#'
+get_filename_txdb <- function(WS){
+  c(filename=paste0("c_elegans.PRJNA13758.WS",WS,".txdb.sqlite"))
+}
+
+
 #' Get FTP path and filename of the genome FASTA file
 #'
 #' This internal function gets the Wormbase FTP location and the filename
@@ -89,6 +102,7 @@ get_filename <- function(type, WS){
   switch(tolower(type),
          "geneid"=, "geneids" = get_filename_geneID(WS),
          "gtf" = get_filename_gtf(WS),
+         "txdb" = get_filename_txdb(WS),
          "genome" = get_filename_genome(WS),
          "cgc" = get_filename_cgc(),
          stop("Type of file not recognized.")
