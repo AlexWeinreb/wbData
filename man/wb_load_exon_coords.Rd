@@ -33,6 +33,9 @@ Loads a data frame providing the genomic coordinates of all exons, built from
 the Wormbase GTF file. The GTF file will be downloaded as needed.
 }
 \examples{
+\dontrun{
 exon_coords <- wb_load_exon_coords("WS277")
 exon_coords[exon_coords$transcript_id == "K08H10.7.2", "position"]
+}
+
 }

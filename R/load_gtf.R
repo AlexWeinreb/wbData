@@ -124,8 +124,11 @@ wb_load_gene_coords <- function(WS, dir_cache = NULL){
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' exon_coords <- wb_load_exon_coords("WS277")
 #' exon_coords[exon_coords$transcript_id == "K08H10.7.2", "position"]
+#' }
+#'
 wb_load_exon_coords <- function(WS, dir_cache = NULL){
 
   # validate input
@@ -211,6 +214,8 @@ wb_load_exon_coords <- function(WS, dir_cache = NULL){
 #' Returns the path to a GTF file in the cache. Useful to use with functions that require
 #' a connection to read from (e.g. to create a TxDb for Bioconductor packages). The file gets
 #' downloaded as necessary.
+#'
+#' For the TxDB creation, see also `wb_load_txdb()` which does it automatically.
 #'
 #' @param WS Wormbase release version.
 #' @param dir_cache Directory where the downloaded files are cached.

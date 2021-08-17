@@ -23,9 +23,11 @@ every time it is needed. Use this function to clean up the cache directory when
 a set of downloaded files will no longer be needed.
 }
 \examples{
+\dontrun{
 dir <- tempdir()
 wb_load_gene_ids(230, dir)
 list.files(dir)
 wb_clean_cache(dir_cache = dir)
 list.files(dir)
+}
 }

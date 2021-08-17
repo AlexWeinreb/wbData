@@ -68,11 +68,13 @@ get_WS <- function(WS){
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' dir <- tempdir()
 #' wb_load_gene_ids(230, dir)
 #' list.files(dir)
 #' wb_clean_cache(dir_cache = dir)
 #' list.files(dir)
+#' }
 wb_clean_cache <- function(WS = NULL, dir_cache = NULL, delete = TRUE){
 
   dir_cache <- get_dir_cache(dir_cache)

@@ -19,6 +19,9 @@ Returns the path to a GTF file in the cache. Useful to use with functions that r
 a connection to read from (e.g. to create a TxDb for Bioconductor packages). The file gets
 downloaded as necessary.
 }
+\details{
+For the TxDB creation, see also `wb_load_txdb()` which does it automatically.
+}
 \examples{
 \dontrun{
 library(GenomicFeatures)
