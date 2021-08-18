@@ -7,9 +7,11 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' strain_list <- wb_load_cgc_list()
 #' nrow(strain_list)
 #' strain_list$Genotype[strain_list$Strain == "NC902"]
+#' }
 wb_load_cgc_list <- function(dir_cache = NULL, refresh = 2){
 
   # validate input

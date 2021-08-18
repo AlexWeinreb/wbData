@@ -18,7 +18,9 @@ A tibble containing the list of strains available at the CGC. Description of the
 Load the list of strains available at the CGC
 }
 \examples{
+\dontrun{
 strain_list <- wb_load_cgc_list()
 nrow(strain_list)
 strain_list$Genotype[strain_list$Strain == "NC902"]
+}
 }

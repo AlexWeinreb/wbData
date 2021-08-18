@@ -2,24 +2,49 @@
 % Please edit documentation in R/s2i.R
 \name{s2i}
 \alias{s2i}
-\title{Convert symbol to Wormbase ID}
+\alias{i2s}
+\alias{wb_seq2id}
+\alias{wb_id2seq}
+\alias{wb_seq2name}
+\alias{wb_symbol2seq}
+\title{Convert between gene symbol, Wormbase ID, and sequence name}
 \usage{
 s2i(symbol, geneIDs, warn_missing = FALSE)
+
+i2s(gene_id, geneIDs, warn_missing = FALSE)
+
+wb_seq2id(seq_id, geneIDs, warn_missing = FALSE)
+
+wb_id2seq(gene_id, geneIDs, warn_missing = FALSE)
+
+wb_seq2name(seq_id, geneIDs, warn_missing = FALSE)
+
+wb_symbol2seq(symbol, geneIDs, warn_missing = FALSE)
 }
 \arguments{
-\item{symbol}{gene symbols.}
+\item{symbol}{gene symbols (e.g. aap-1).}
 
 \item{geneIDs}{Translation table generated with `load_gene_ids()`.}
 
 \item{warn_missing}{If TRUE, a warning is issued when a gene symbol was not found.}
+
+\item{gene_id}{Wormbase gene ID (e.g. WBGene00000001).}
+
+\item{seq_id}{sequence ID (e.g. F27C8.1)}
 }
 \value{
-The corresponding Wormbase IDs.
+The corresponding IDs.
 }
 \description{
-Convert symbol to Wormbase ID
+Convert between gene symbol, Wormbase ID, and sequence name
+}
+\details{
+These functions convert between different gene identifiers using a preloaded
+      translation table. `s2i` and `i2s` are the most commonly used, a longer name would
+      be `wb_symbol2id` and `wb_id2symbol`. The gene `name` is the gene `symbol` if it exists,
+      and the sequence ID otherwise.
 }
 \examples{
 gids <- wb_load_gene_ids("WS277")
-s2i("unc-10", gids)
+s2i(c("unc-10", "aap-1"), gids)
 }
