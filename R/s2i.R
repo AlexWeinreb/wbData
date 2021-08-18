@@ -29,6 +29,7 @@ s2i <- function(symbol, geneIDs, warn_missing = FALSE){
 
 
 #' @rdname s2i
+#' @export
 i2s <- function(gene_id, geneIDs, warn_missing = FALSE){
   res <- geneIDs$name[match(gene_id, geneIDs$gene_id)]
   if(warn_missing && any(is.na(res))){
@@ -38,6 +39,7 @@ i2s <- function(gene_id, geneIDs, warn_missing = FALSE){
 }
 
 #' @rdname s2i
+#' @export
 wb_seq2id <- function(seq_id, geneIDs, warn_missing = FALSE){
   res <- geneIDs$gene_id[match(seq_id, geneIDs$sequence)]
   if(warn_missing && any(is.na(res))){
@@ -47,6 +49,7 @@ wb_seq2id <- function(seq_id, geneIDs, warn_missing = FALSE){
 }
 
 #' @rdname s2i
+#' @export
 wb_id2seq <- function(gene_id, geneIDs, warn_missing = FALSE){
   res <- geneIDs$sequence[match(gene_id, geneIDs$gene_id)]
   if(warn_missing && any(is.na(res))){
@@ -56,6 +59,7 @@ wb_id2seq <- function(gene_id, geneIDs, warn_missing = FALSE){
 }
 
 #' @rdname s2i
+#' @export
 wb_seq2name <- function(seq_id, geneIDs, warn_missing = FALSE){
   res <- geneIDs$name[match(seq_id, geneIDs$sequence)]
   if(warn_missing && any(is.na(res))){
@@ -65,6 +69,7 @@ wb_seq2name <- function(seq_id, geneIDs, warn_missing = FALSE){
 }
 
 #' @rdname s2i
+#' @export
 wb_symbol2seq <- function(symbol, geneIDs, warn_missing = FALSE){
   res <- geneIDs$sequence[match(symbol, geneIDs$symbol)]
   if(warn_missing && any(is.na(res))){
