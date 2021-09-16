@@ -166,6 +166,8 @@ wb_load_exon_coords <- function(WS, dir_cache = NULL){
   } else if(WS >= 262 && WS <= 268){
     warning("For WS262-WS268 the miRNA gene IDs are non-standard. Further processing may be required.")
     ex_pat <- "^gene_id \"(WBGene\\d{8}|Transcript:\\w{3,7}\\.\\d{1,4})\"; transcript_id \"([\\w\\.]{3,20})\"; exon_number \"(\\d{1,2})\"; gene_source \"WormBase\"; gene_biotype \"(\\w+)\"; transcript_source \"WormBase\"; transcript_biotype \"(\\w+)\"; exon_id \"([\\w\\.]{3,22})\";$"
+  } else if(WS >= 281){
+    ex_pat <- "^gene_id \"(WBGene\\d{8}|Transcript:\\w{3,7}\\.\\d{1,4})\"; gene_version \"[0-9]+\"; transcript_id \"([\\w\\.]{3,20})\"; exon_number \"(\\d{1,2})\"; gene_source \"WormBase\"; gene_biotype \"(\\w+)\"; transcript_source \"WormBase\"; transcript_biotype \"(\\w+)\"; exon_id \"([\\w\\.]{3,22})\";$"
   } else{
     ex_pat <- "^gene_id \"(WBGene\\d{8})\"; transcript_id \"([\\w\\.]{3,20})\"; exon_number \"(\\d{1,2})\"; gene_source \"WormBase\"; gene_biotype \"(\\w+)\"; transcript_source \"WormBase\"; transcript_biotype \"(\\w+)\"; exon_id \"([\\w\\.]{3,22})\";$"
   }
