@@ -20,7 +20,7 @@
 #' gids <- wb_load_gene_ids("WS277")
 #' s2i(c("unc-10", "aap-1"), gids)
 s2i <- function(symbol, geneIDs, warn_missing = FALSE){
-  res <- geneIDs$gene_id[match(symbol, geneIDs$name)]
+  res <- geneIDs$gene_id[match(symbol, geneIDs$name, incomparables = NA)]
   if(warn_missing && any(is.na(res))){
     warning("s2i: ",sum(is.na(res))," gene symbols could not be converted. NA are returned.")
   }
@@ -31,7 +31,7 @@ s2i <- function(symbol, geneIDs, warn_missing = FALSE){
 #' @rdname s2i
 #' @export
 i2s <- function(gene_id, geneIDs, warn_missing = FALSE){
-  res <- geneIDs$name[match(gene_id, geneIDs$gene_id)]
+  res <- geneIDs$name[match(gene_id, geneIDs$gene_id, incomparables = NA)]
   if(warn_missing && any(is.na(res))){
     warning("i2s: ",sum(is.na(res))," gene IDs could not be converted. NA are returned.")
   }
@@ -41,7 +41,7 @@ i2s <- function(gene_id, geneIDs, warn_missing = FALSE){
 #' @rdname s2i
 #' @export
 wb_seq2id <- function(seq_id, geneIDs, warn_missing = FALSE){
-  res <- geneIDs$gene_id[match(seq_id, geneIDs$sequence)]
+  res <- geneIDs$gene_id[match(seq_id, geneIDs$sequence, incomparables = NA)]
   if(warn_missing && any(is.na(res))){
     warning("wb_seq2symbol: ",sum(is.na(res))," sequence IDs could not be converted. NA are returned.")
   }
@@ -51,7 +51,7 @@ wb_seq2id <- function(seq_id, geneIDs, warn_missing = FALSE){
 #' @rdname s2i
 #' @export
 wb_id2seq <- function(gene_id, geneIDs, warn_missing = FALSE){
-  res <- geneIDs$sequence[match(gene_id, geneIDs$gene_id)]
+  res <- geneIDs$sequence[match(gene_id, geneIDs$gene_id, incomparables = NA)]
   if(warn_missing && any(is.na(res))){
     warning("i2s: ",sum(is.na(res))," gene IDs could not be converted. NA are returned.")
   }
@@ -61,7 +61,7 @@ wb_id2seq <- function(gene_id, geneIDs, warn_missing = FALSE){
 #' @rdname s2i
 #' @export
 wb_seq2name <- function(seq_id, geneIDs, warn_missing = FALSE){
-  res <- geneIDs$name[match(seq_id, geneIDs$sequence)]
+  res <- geneIDs$name[match(seq_id, geneIDs$sequence, incomparables = NA)]
   if(warn_missing && any(is.na(res))){
     warning("wb_seq2name: ",sum(is.na(res))," sequence IDs could not be converted. NA are returned.")
   }
@@ -71,7 +71,7 @@ wb_seq2name <- function(seq_id, geneIDs, warn_missing = FALSE){
 #' @rdname s2i
 #' @export
 wb_symbol2seq <- function(symbol, geneIDs, warn_missing = FALSE){
-  res <- geneIDs$sequence[match(symbol, geneIDs$symbol)]
+  res <- geneIDs$sequence[match(symbol, geneIDs$symbol, incomparables = NA)]
   if(warn_missing && any(is.na(res))){
     warning("wb_name2seq: ",sum(is.na(res))," gene names could not be converted. NA are returned.")
   }

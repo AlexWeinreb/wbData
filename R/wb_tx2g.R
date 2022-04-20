@@ -22,7 +22,7 @@
 #'   wb_g2tx(c("WBGene00017981", "WBGene00045419", "mistake"), tx2g_tab, warn_missing = TRUE)
 #' }
 wb_tx2g <- function(tx, tx2g_tab, warn_missing = FALSE){
-  res <- tx2g_tab$gene_id[match(tx, tx2g_tab$transcript_id)]
+  res <- tx2g_tab$gene_id[match(tx, tx2g_tab$transcript_id, incomparables = NA_character_)]
   if(warn_missing && any(is.na(res))){
     warning("tx2g: ",sum(is.na(res))," transcript IDs could not be converted. NA are returned.")
   }
@@ -33,7 +33,11 @@ wb_tx2g <- function(tx, tx2g_tab, warn_missing = FALSE){
 #' @export
 wb_g2tx <- function(gene_id, tx2g_tab, warn_missing = FALSE, simplify = FALSE){
   res <- sapply(gene_id,
-                \(.g) tx2g_tab$transcript_id[which(tx2g_tab$gene_id == .g)],
+                \(.g) {
+                  tx_rows <- which(tx2g_tab$gene_id == .g)
+                  if(length(tx_rows) == 0) return(NA_character_)
+                  tx2g_tab$transcript_id[tx_rows]
+                  },
                 simplify = simplify)
 
   if(warn_missing && any(is.na(res))){
