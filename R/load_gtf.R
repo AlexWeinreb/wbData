@@ -43,7 +43,7 @@ wb_load_gene_coords <- function(WS, dir_cache = NULL){
                             col_names = c("chr","source", "feature",
                                           "start", "end", "score", "strand",
                                           "frame", "attributes"),
-                            col_types = "cccddcccc")
+                            col_types = "ccciicccc")
 
   gene_coords <- full_gtf[full_gtf$feature == "gene",c(1, 4:5, 7, 9)]
   attrs <- gene_coords$attributes
@@ -149,7 +149,7 @@ wb_load_exon_coords <- function(WS, dir_cache = NULL){
                               col_names = c("chr","source", "feature",
                                             "start", "end", "score", "strand",
                                             "frame", "attributes"),
-                              col_types = "cccddcccc")
+                              col_types = "ccciicccc")
 
   exon_coords <- full_gtf[full_gtf$feature == "exon",c(1, 4:5, 7, 9)]
   attrs <- exon_coords$attributes
@@ -262,7 +262,7 @@ wb_load_tx2gene <- function(WS, dir_cache = NULL){
                               col_names = c("chr","source", "feature",
                                             "start", "end", "score", "strand",
                                             "frame", "attributes"),
-                              col_types = "cccddcccc")
+                              col_types = "ccciicccc")
 
   attrs <- full_gtf$attributes[full_gtf$feature == "transcript"]
 
