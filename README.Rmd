@@ -33,7 +33,7 @@ devtools::install_github("AlexWeinreb/wbData")
 ```
 ## Example of gene ID conversion
 
-To load the geneIDs table for Wormbase release WS277 and convert between gene ID and gene symbol:
+To load the geneIDs table for Wormbase release WS273 and convert between gene ID and gene symbol:
 
 ```{r}
 library(wbData)
@@ -48,18 +48,19 @@ i2s(c("WBGene00006752", "WBGene00004412"), gids)
 
 ```{r}
 gene_coords <- wbData::wb_load_gene_coords(273)
-gene_coords
+head(gene_coords)
 ```
 
 This can be used in conjunction with other packages, for example to look up a gene model in IGV or JBrowse:
 
 ```{r, eval=FALSE}
-library(tidyverse)
 
-gene_coords %>%
-  filter(gene_id == s2i("unc-10", gids)) %>%
-  pull(position)
+gene_coords |>
+  dplyr::filter(gene_id == s2i("unc-10", gids)) |>
+  dplyr::pull(position) |>
   clipr::write_clip()
+
+clipr::read_clip()
 ```
 
 ## Reading the CGC strain list
@@ -99,9 +100,18 @@ The cache directory can be specified in three ways:
 * Through `option("wb_dir_cache")`. In that case leave the argument as `NULL`.
 * If the `dir_cache` argument is `NULL` and the option is not specified, a user-specific cache directory is chosen based on the operating system by [rappdirs](https://github.com/r-lib/rappdirs/).
 
+
+To only list the files in cache without deleting them:
+
+```{r}
+wb_clean_cache(273, delete = FALSE)
+```
+
 The cache can be emptied with:
 
 ```{r}
 wb_clean_cache(273)
 ```
+
+
 

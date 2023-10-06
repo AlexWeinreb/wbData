@@ -32,7 +32,7 @@ wb_load_cgc_list <- function(dir_cache = NULL, refresh = 2){
   }
 
 
-  raw_list <- readr::read_lines(cached_file)
+  raw_list <- readr::read_lines(cached_file, skip_empty_rows = TRUE)
 
   strainlist <- split(raw_list,
                       cumsum(grepl("^ +-+ $", raw_list)))
