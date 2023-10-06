@@ -12,16 +12,25 @@ get_filename_geneID <- function(WS){
     path <- c(path=paste0("ftp://ftp.wormbase.org/pub/wormbase/releases/WS",
                           WS,"/species/c_elegans/PRJNA13758/annotation/"),
               filename=paste0("c_elegans.PRJNA13758.WS",WS,".geneIDs.txt.gz"))
+
   } else if(WS >= 226){
     path <- c(path=paste0("ftp://ftp.wormbase.org/pub/wormbase/releases/WS",
                           WS,"/species/c_elegans/annotation/"),
               filename=paste0("c_elegans.WS",WS,".geneIDs.txt.gz"))
+
   } else if(WS >= 197){
     path <- c(path=paste0("ftp://ftp.wormbase.org/pub/wormbase/releases/WS",
                           WS,"/species/c_elegans/annotation/"),
               filename=paste0("geneIDs.WS",WS,".gz"))
+
+  } else if(WS %in% seq(130, 190, 10)){
+    path <- c(path=paste0("ftp://ftp.wormbase.org/pub/wormbase/releases/WS",
+                          WS,"/"),
+              filename=paste0("geneIDs.WS",WS,".gz"))
+
   } else if(WS < 197){
-    stop("Annotations not available for WS196 and older.")
+    stop("Annotations not available for WS196 and older (except 130, 140, 150, 160, 170, 180, 190).")
+
   } else stop("Unrecognized Wormbase release.")
 
   path
@@ -38,10 +47,12 @@ get_filename_geneID <- function(WS){
 #' @return a vector of length 2 giving the FTP path and the filename.
 #'
 get_filename_gtf <- function(WS){
+
   if(WS >= 253){
     path <- c(path=paste0("ftp://ftp.wormbase.org/pub/wormbase/releases/WS",
                           WS,"/species/c_elegans/PRJNA13758/"),
               filename=paste0("c_elegans.PRJNA13758.WS",WS,".canonical_geneset.gtf.gz"))
+
   } else if(WS <= 252){
     stop("GTF not available for WS252 and older.")
   } else stop("Unrecognized Wormbase release.")
@@ -73,9 +84,30 @@ get_filename_txdb <- function(WS){
 #' @return a vector of length 2 giving the FTP path and the filename.
 #'
 get_filename_genome <- function(WS){
-  path <- c(path=paste0("ftp://ftp.wormbase.org/pub/wormbase/releases/WS",
-                        WS,"/species/c_elegans/PRJNA13758/"),
-            filename=paste0("c_elegans.PRJNA13758.WS",WS,".genomic.fa.gz"))
+  if(WS >= 237){
+    path <- c(path=paste0("ftp://ftp.wormbase.org/pub/wormbase/releases/WS",
+                          WS,"/species/c_elegans/PRJNA13758/"),
+              filename=paste0("c_elegans.PRJNA13758.WS",WS,".genomic.fa.gz"))
+
+  } else if(WS >= 197){
+    path <- c(path=paste0("ftp://ftp.wormbase.org/pub/wormbase/releases/WS",
+                          WS,"/species/c_elegans/"),
+              filename=paste0("c_elegans.WS",WS,".genomic.fa.gz"))
+
+  } else if(WS %in% seq(100, 190, 10)){
+    path <- c(path=paste0("ftp://ftp.wormbase.org/pub/wormbase/releases/WS",
+                          WS,"/species/c_elegans/"),
+              filename=paste0("c_elegans.WS",WS,".genomic.fa.gz"))
+
+  } else if(WS == 77){
+    path <- c(path=paste0("ftp://ftp.wormbase.org/pub/wormbase/releases/WS077/species/c_elegans/"),
+              filename=paste0("c_elegans.WS077.genomic.fa.gz"))
+
+  } else if(WS < 197){
+    stop("Genome not available for WS196 and older (except 077 and multiples of 10, e.g. 100, 130, 190).")
+
+  } else stop("Unrecognized Wormbase release.")
+
   path
 }
 

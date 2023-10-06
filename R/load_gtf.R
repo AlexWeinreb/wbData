@@ -25,16 +25,7 @@
 
 wb_load_gene_coords <- function(WS, dir_cache = NULL){
 
-  # validate input
-  if(is.character(WS)) WS <- get_WS(WS)
-  dir_cache <- get_dir_cache(dir_cache)
-
-  file_path <- get_filename("gtf", WS)
-  cached_file <- file.path(dir_cache, file_path["filename"])
-  if(! file.exists(cached_file)){
-    ftp_path <- paste(file_path, collapse = "")
-    utils::download.file(ftp_path, cached_file)
-  }
+  cached_file <- wb_get_gtf_path(WS, dir_cache)
 
 
   # read data
@@ -131,16 +122,7 @@ wb_load_gene_coords <- function(WS, dir_cache = NULL){
 #'
 wb_load_exon_coords <- function(WS, dir_cache = NULL){
 
-  # validate input
-  if(is.character(WS)) WS <- get_WS(WS)
-  dir_cache <- get_dir_cache(dir_cache)
-
-  file_path <- get_filename("gtf", WS)
-  cached_file <- file.path(dir_cache, file_path["filename"])
-  if(! file.exists(cached_file)){
-    ftp_path <- paste(file_path, collapse = "")
-    utils::download.file(ftp_path, cached_file)
-  }
+  cached_file <- wb_get_gtf_path(WS, dir_cache)
 
 
   # read data
@@ -353,9 +335,10 @@ wb_get_gtf_path <- function(WS, dir_cache = NULL){
 
   file_path <- get_filename("gtf", WS)
   cached_file <- file.path(dir_cache, file_path["filename"])
-  if(! file.exists(cached_file)){
-    ftp_path <- paste(file_path, collapse = "")
+  if(! file.exists(cached_file) ){
+    ftp_path <- paste0(file_path, collapse = "")
     utils::download.file(ftp_path, cached_file)
+
   }
 
 
