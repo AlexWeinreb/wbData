@@ -111,6 +111,54 @@ get_filename_genome <- function(WS){
   path
 }
 
+#' Get FTP path and filename of the transcriptome FASTA file
+#'
+#' This internal function gets the Wormbase FTP location and the filename
+#' of the transcriptome FASTA file for a given Wormbase release.
+#'
+#' @param WS Wormbase release number.
+#'
+#' @return a vector of length 2 giving the FTP path and the filename. Note the filename changes between versions!
+#'
+get_filename_transcriptome <- function(WS){
+
+  if(WS >= 244){
+    path <- c(path=paste0("ftp://ftp.wormbase.org/pub/wormbase/releases/WS",
+                          WS,"/species/c_elegans/PRJNA13758/"),
+              filename=paste0("c_elegans.PRJNA13758.WS",WS,".mRNA_transcripts.fa.gz"))
+
+  } else if(WS >= 237){
+    path <- c(path=paste0("ftp://ftp.wormbase.org/pub/wormbase/releases/WS",
+                          WS,"/species/c_elegans/PRJNA13758/"),
+              filename=paste0("c_elegans.WS",WS,".coding_transcripts.fa.gz"))
+
+  }  else if(WS == 236){
+    path <- c(path=paste0("ftp://ftp.wormbase.org/pub/wormbase/releases/WS",
+                          WS,"/species/c_elegans/"),
+              filename=paste0("c_elegans.WS",WS,".coding_transcripts.fa.gz"))
+
+  } else if(WS >= 197){
+
+    warning("Full transcripts not available before WS236, downloading CDS transcripts instead (no UTR).")
+
+    path <- c(path=paste0("ftp://ftp.wormbase.org/pub/wormbase/releases/WS",
+                          WS,"/species/c_elegans/"),
+              filename=paste0("c_elegans.WS",WS,".cds_transcripts.fa.gz"))
+
+  } else if(WS %in% seq(100, 190, 10)){
+    path <- c(path=paste0("ftp://ftp.wormbase.org/pub/wormbase/releases/WS",
+                          WS,"/species/c_elegans/"),
+              filename=paste0("c_elegans.WS",WS,".cds_transcripts.fa.gz"))
+
+  } else if(WS < 197){
+
+    stop("Transcriptome not available for WS196 and older (except multiples of 10, e.g. 100, 130, 190).")
+
+  } else stop("Unrecognized Wormbase release.")
+
+  path
+}
+
 
 #' Get URL of CGC strain list
 #'
@@ -136,6 +184,7 @@ get_filename <- function(type, WS){
          "gtf" = get_filename_gtf(WS),
          "txdb" = get_filename_txdb(WS),
          "genome" = get_filename_genome(WS),
+         "transcriptome" = get_filename_transcriptome(WS),
          "cgc" = get_filename_cgc(),
          stop("Type of file not recognized.")
   )
