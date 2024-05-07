@@ -4,10 +4,12 @@
 \alias{get_filename_geneID}
 \title{Get FTP path and filename of the geneIDs table}
 \usage{
-get_filename_geneID(WS)
+get_filename_geneID(WS, protocol = "https")
 }
 \arguments{
 \item{WS}{Wormbase release number.}
+
+\item{protocol}{use https or ftp}
 }
 \value{
 a vector of length 2 giving the FTP path and the filename.

@@ -4,10 +4,12 @@
 \alias{get_filename_transcriptome}
 \title{Get FTP path and filename of the transcriptome FASTA file}
 \usage{
-get_filename_transcriptome(WS)
+get_filename_transcriptome(WS, protocol = "https")
 }
 \arguments{
 \item{WS}{Wormbase release number.}
+
+\item{protocol}{use https or ftp}
 }
 \value{
 a vector of length 2 giving the FTP path and the filename. Note the filename changes between versions!

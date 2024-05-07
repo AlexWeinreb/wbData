@@ -4,10 +4,12 @@
 \alias{get_filename_genome}
 \title{Get FTP path and filename of the genome FASTA file}
 \usage{
-get_filename_genome(WS)
+get_filename_genome(WS, protocol = "https")
 }
 \arguments{
 \item{WS}{Wormbase release number.}
+
+\item{protocol}{use https or ftp}
 }
 \value{
 a vector of length 2 giving the FTP path and the filename.

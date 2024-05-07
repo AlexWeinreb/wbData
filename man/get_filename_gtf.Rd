@@ -4,10 +4,12 @@
 \alias{get_filename_gtf}
 \title{Get FTP path and filename of the GTF file}
 \usage{
-get_filename_gtf(WS)
+get_filename_gtf(WS, protocol = "https")
 }
 \arguments{
 \item{WS}{Wormbase release number.}
+
+\item{protocol}{use https or ftp}
 }
 \value{
 a vector of length 2 giving the FTP path and the filename.
