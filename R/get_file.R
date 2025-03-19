@@ -197,6 +197,12 @@ get_filename_cgc <- function(){
 }
 
 
+get_filename_gene_name_history <- function(){
+  c(path="http://tazendra.caltech.edu/~azurebrd/cgi-bin/data/",
+    filename="GeneNameHistory.csv")
+}
+
+
 #' Find the filename and FTP path
 #'
 #' Dispatch to the corresponding file type function.
@@ -213,6 +219,7 @@ get_filename <- function(type, WS){
          "genome" = get_filename_genome(WS),
          "transcriptome" = get_filename_transcriptome(WS),
          "cgc" = get_filename_cgc(),
+         "gene_name_history" = get_filename_gene_name_history(),
          stop("Type of file not recognized.")
   )
 }
