@@ -37,6 +37,7 @@ wb_get_gene_name_history <- function(dir_cache = NULL, refresh = 20){
 #' @param warn_missing Warn if some gene IDs are not found.
 #' @param dir_cache Directory where the downloaded files are cached.
 #' @param refresh Number of days after which the downloaded list needs to be refreshed.
+#' @param return_one if `FALSE`, a single input may return several gene IDs separated by commas when the gene was split. If set to `TRUE`, only the first match is returned.
 #'
 #' @description
 #' Takes a list of (potentially old) Wormbase gene IDs, and replaces the Dead ones
@@ -61,7 +62,7 @@ wb_get_gene_name_history <- function(dir_cache = NULL, refresh = 20){
 #' cleaned_genes <- wb_clean_gene_names(genes_of_interest)
 #' i2s(cleaned_genes, gids, warn_missing = TRUE)
 #' }
-wb_clean_gene_names <- function(gene_id, warn_missing = TRUE, dir_cache = NULL, refresh = 20){
+wb_clean_gene_names <- function(gene_id, warn_missing = TRUE, dir_cache = NULL, refresh = 20, return_one = FALSE){
   history_file <- wb_get_gene_name_history(dir_cache, refresh)
 
   not_found <- ( ! gene_id %in% history_file[["Input"]] )
@@ -88,6 +89,12 @@ wb_clean_gene_names <- function(gene_id, warn_missing = TRUE, dir_cache = NULL, 
   if( any(res_na_when_id_found) && warn_missing ){
 
     warning(sum(res_na_when_id_found), " gene(s) obsolete, no update available. NAs returned")
+  }
+
+  if(return_one){
+    res <- strsplit(res, split = ", ", fixed = TRUE) |>
+      vapply(\(x) x[[1]],
+             FUN.VALUE = character(1L))
   }
 
   res

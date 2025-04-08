@@ -8,7 +8,8 @@ wb_clean_gene_names(
   gene_id,
   warn_missing = TRUE,
   dir_cache = NULL,
-  refresh = 20
+  refresh = 20,
+  return_one = FALSE
 )
 }
 \arguments{
@@ -19,6 +20,8 @@ wb_clean_gene_names(
 \item{dir_cache}{Directory where the downloaded files are cached.}
 
 \item{refresh}{Number of days after which the downloaded list needs to be refreshed.}
+
+\item{return_one}{if `FALSE`, a single input may return several gene IDs separated by commas when the gene was split. If set to `TRUE`, only the first match is returned.}
 }
 \value{
 An updated list of gene IDs.

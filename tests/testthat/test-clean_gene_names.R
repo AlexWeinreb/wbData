@@ -93,3 +93,27 @@ test_that("Warns for obsolete", {
 })
 
 
+
+
+
+test_that("Returns single ID when asked", {
+
+  expect_identical(
+    wb_clean_gene_names(c("B0564.1","C34D1.2")),
+    c("WBGene00007201, WBGene00044083",
+      "WBGene00007929")
+  )
+
+  expect_identical(
+    wb_clean_gene_names(c("B0564.1","C34D1.2"),
+                        return_one = TRUE),
+    c("WBGene00007201",
+      "WBGene00007929")
+  )
+
+
+})
+
+
+
+
