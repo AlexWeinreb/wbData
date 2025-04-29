@@ -198,7 +198,7 @@ get_filename_cgc <- function(){
 
 
 get_filename_gene_name_history <- function(){
-  c(path="http://tazendra.caltech.edu/~azurebrd/cgi-bin/data/",
+  c(path="http://caltech.wormbase.org/pub/wormbase/spell_download/tables/",
     filename="GeneNameHistory.csv")
 }
 

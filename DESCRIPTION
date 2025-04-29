@@ -1,7 +1,7 @@
 Package: wbData
 Type: Package
 Title: Download And Use WormBase Data
-Version: 0.11.1
+Version: 0.11.2
 Author: Alexis Weinreb
 Maintainer: Alexis Weinreb <alexis.weinreb@yale.edu>
 Description: Helper functions to download and use data from Wormbase or other Worm-related data sources.
