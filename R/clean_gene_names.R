@@ -26,7 +26,7 @@ wb_get_gene_name_history <- function(dir_cache = NULL, refresh = 20){
   }
 
 
-  readr::read_tsv(cached_file, show_col_types = FALSE, progress = FALSE)
+  readr::read_tsv(cached_file, col_types = "cccccccccc", progress = FALSE)
 }
 
 
